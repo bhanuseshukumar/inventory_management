@@ -1,0 +1,56 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% block title %}
+	<title>Delete Stock</title>
+{% endblock %}
+{% block inventory_active %}
+bg-danger border-0 rounded
+{% endblock %}
+
+{% block content %}
+
+
+
+{% if error_delete %}
+<div class="container error" style="padding-left: 100px;">
+	<h1 class="display-3">ERROR DELETING</h1>
+	<p class="lead ">{{ error_delete }}</p>
+</div>
+
+{% else %}
+
+
+<div class="container" style="padding-left: 100px;">
+
+	<h1 class="py-2">Are You Sure to DELETE?</h1>
+
+	{% if reserv_list %}
+	<section class="error">
+		<strong class=''> Can't Delete </strong>
+		<p class="">There are records either in reservation, or consume tables</p>
+	</section>
+
+	{% endif %}
+
+	{% if form %}
+		<section class="">
+			<p class="lead">BEL PART NUMBER : {{ form.BEL_PART_NUMBER }}</p>
+			<p class="lead">MPN : {{ form.MPN }}</p>
+			<p class="lead">Description : {{ form.description }}</p>
+			<p class="lead">Quantity : {{ form.quantity }}</p>			
+		</section>
+
+
+	{% endif %}
+
+
+	<form class="" method="POST", acction="">
+		{% csrf_token %}
+		<input class = "btn mx-auto btn-lg btn-outline-success text-white border border-white mt-4" type="submit" name="DELETE-Material" value="DELETE">
+		
+	</form>
+
+	<p class="lead pt-2"><b>Note :</b>Deletion only allowed if there are no reservatoin or consumtion records.</p>
+</div>
+{% endif %}
+{% endblock %}
+

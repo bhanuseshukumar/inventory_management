@@ -1,0 +1,42 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% block title %}
+	<title>Delete Material</title>
+{% endblock %}
+
+{% block addstock_active %}
+bg-danger border-0 rounded
+{% endblock %}
+<!--context red updated-->
+{% block content %}
+
+
+
+<div style="padding-left:100px;" class="">
+
+	<h1 class="">Are You Sure to DELETE?</h1>
+	<section class="error">
+		{% if stock_list %}
+		<strong> Can't Delete </strong>
+		<p>There are records either in stock, reservation, or consume tables</p>
+	{% endif %}
+	</section>
+
+
+	{% if form %}
+		<p class="lead">BEL PART NUMBER :{{ form.BEL_PART_NUMBER }}</p>
+		<p class="lead" >MPN :{{ form.MPN }}</p>
+		<p class="lead" >BEL PART NUMBER :{{ form.description }}</p>
+	{% endif %}
+
+
+	<form method="POST", acction="">
+		{% csrf_token %}
+		<input class="mb-4 btn mx-auto btn-lg btn-outline-success text-white border border-white mt-1 px-5" type="submit" name="DELETE-Material" value="DELETE">
+		
+	</form>
+
+	<p><b>Note :</b>Deletion only allowed if there are no stock,reservatoin or consumtion records.</p>
+
+</div>
+
+{% endblock %}

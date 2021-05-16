@@ -1,0 +1,35 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% block title %}
+<title>Create Material</title>
+{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block addstock_active %}
+bg-danger border-0 rounded
+{% endblock %}
+
+{% block content %}
+
+<div class="container text-white" style="padding-left: 100px;">
+	
+	<h1 class="text-center" >Add new material into material master</h1>
+
+			<form class="mx-5" method="POST", acction="{% url 'add-material' %}">
+				{% csrf_token %}
+				
+				{{ form|crispy }}
+				
+				<input class="btn mx-auto btn-lg btn-outline-success text-white border border-white mt-1 px-5" type="submit" name="Add-Material" value="Add-Material">
+			</form>
+
+
+	{% endblock %}
+
+	{% block script  %}
+
+	<script>
+		document.getElementsByClassName('error')[0].className = "control-group error text-danger bg-warning"
+	</script>
+
+</div>
+{% endblock %}

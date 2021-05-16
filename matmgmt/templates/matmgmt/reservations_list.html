@@ -1,0 +1,141 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% block title %}
+<title>Reservations List</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'matmgmt/bootstrapTabless/css/bootstrap-table.min.css' %}">
+<link href="{% static 'matmgmt/bootstrapTabless/css/bootstrap-table-sticky-header.css' %}" rel="stylesheet">
+
+{% endblock %}
+{% block reservaitons_active %}
+bg-danger border-0 rounded
+{% endblock %}
+{% block content %}
+
+
+
+<div class="container-fluid">
+	<h4 class="display-4 text-center pb-3">Active Reservations</h1>
+		{% if reservations %}
+		<div id="toolbar">
+			<select class="form-control">
+					<!-- <option value="">Export Basic</option> -->
+					<option value="all">Export All</option>
+					<!-- <option value="selected">Export Selected</option> -->
+			</select>
+		</div>
+		<table  
+		id="table" data-toggle="true"
+		data-filter-control="true"
+		data-pagination="true"
+		data-toolbar="#toolbar"
+		data-show-export="true"
+		data-show-columns="true" 
+		data-sticky-header = "true"
+		
+		data-show-toggle="false"
+		data-search="false"
+		data-click-to-select="false"
+		data-height#_="600"
+		class="tab-hide"
+		classs="text-center table table-striped table-hover table-responsive-sm table-sm table-bordered " style="display: none">
+			<thead class="text-warning font-weight-light">
+				<tr>
+					<!-- <th data-filter-control-placeholder ='search..' data-field="state" data-checkbox="true"></th> -->
+					<th class="pt-5" data-filter-control-placeholder ='search..' data-field="PART NUMBER" data-sortable="true" data-filter-control="input">PART NUMBER</th>
+					<th data-filter-control-placeholder ='search..' data-field="DESCRIPTION" data-sortable="true" data-filter-control="input">DESCRIPTION</th>
+					<th data-filter-control-placeholder ='search..' data-field="MPN" data-sortable="true" data-filter-control="input">MPN</th>
+					<th data-filter-control-placeholder ='search..' data-field="QTY" data-sortable="true" data-filter-control="input">QTY</th>
+					<th data-filter-control-placeholder ='search..' data-field="LOCATION" data-sortable="true" data-filter-control="input">LOCATION</th>
+					<th data-filter-control-placeholder ='select..' data-field="USER" data-sortable="true" data-filter-control="select">USER</th>
+					<th data-filter-control-placeholder ='search..' data-field="LAST MODIFIED" data-sortable="true" data-filter-control="input">LAST MODIFIED</th>
+					<th data-filter-control-placeholder ='search..' data-field="COMMENT" data-sortable="true" data-filter-control="input">COMMENT</th>
+					<th data-filter-control-placeholder ='search..' data-field="EDIT" data-sortable="false" data-filter-control="input">EDIT</th>
+				</tr>
+			</thead>
+			<tbody class="text-white text-center">
+				{% for reservations in reservations %}
+				<tr id="tr-id-{{ forloop.counter }}" class="tr-class-{{ forloop.counter }}">
+					<!-- <td class="bs-checkbox "><input data-index="{{forloop.counter0 }}" name="btSelectItem" type="checkbox"></td> -->
+					<td id="td-id-{{ forloop.counter }}" class="td-class-{{ forloop.counter }}">{% if  reservations.inventory.free_stock == True %}<i class="fas fa-unlock-alt"></i>{% endif %} {{ reservations.inventory.partMaster.belPartNo.belPartNo}} </td>
+					<td>{{ reservations.inventory.partMaster.description }}</td>
+					<td>{{ reservations.inventory.partMaster.mpn }}</td>	
+					<td>{{ reservations.reservedQty }}</td>		
+					<td>{{ reservations.inventory.storeLoc.primary_loc }} [{{reservations.inventory.secondary_loc}}]</td>
+					<td>{{ reservations.user.first_name }}</td>
+					<td>{{ reservations.modifiedDate }}</td>
+					<td>{{ reservations.comment }}</td>	
+					{% load static %}
+					
+					
+					<td><p class="pt-3"><a class="text-white btn btn-success btn-sm" href="{% url 'consume' reservations.id %}"> Consume</a></p>
+
+						<a class="text-white pr-3"  data-toggle="tooltip" title="EDIT" href="{% url 'reservation-edit' reservations.id %}" onclick='popupWindow()'><i class="fas fa-edit"></i></a>
+						
+						<a class="text-white pr-3"  data-toggle="tooltip" title="DELETE" href="{% url 'reservation-delete' reservations.id %}" onclick='popupWindow()'><i class="fas fa-trash-alt"></i></a>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+			{% else %}
+			<p class="lead text-center my-5"><strong> There are no reservations...</strong></p>
+			{% endif %}
+		</tbody>
+
+	</div>
+	{% endblock %}
+
+	{% block script %}
+	<!-- <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script> -->
+
+<script src="{% static 'matmgmt/bootstrapTabless/js/tableExport.min.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/jspdf.min.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/jspdf.plugin.autotable.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/bootstrap-table.min.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/bootstrap-table-export.min.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/bootstrap-table-filter-control.min.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/bootstrap-table-sticky-header.min.js' %}"></script>
+
+<script>
+	var $table = $('#table')
+  
+	$(function() {
+	  $('#toolbar').find('select').change(function () {
+		$table.bootstrapTable('destroy').bootstrapTable({
+		  exportDataType: $(this).val(),
+		  exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],
+		  columns: [
+			{
+			  field: 'PART NUMBER',
+			  title: 'PART NUMBER'
+			},{
+			  field: 'DESCRIPTION',
+			  title: 'DESCRIPTION'
+			}, {
+			  field: 'MPN',
+			  title: 'MPN'
+			}, {
+			  field: 'QTY',
+			  title: 'QTY'
+			}, {
+			  field: 'LOCATION',
+			  title: 'LOCATION'
+			}, {
+			  field: 'USER',
+			  title: 'USER'
+			},{
+			  field: 'LAST MODIFIED',
+			  title: 'LAST MODIFIED'
+			}, {
+			  field: 'COMMENT',
+			  title: 'COMMENT'
+			}, {
+			  field: 'EDIT',
+			  title: 'EDIT'
+			},
+		  ]
+		})
+	  }).trigger('change')
+	})
+  </script>
+  <script defer src="{% static 'matmgmt/jscript/table_hide.js' %}"></script>
+	{% endblock %}

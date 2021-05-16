@@ -1,0 +1,57 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="container text-white" style="padding-left :0px%"> 
+    
+    
+    
+    {% if user.is_authenticated %}
+    
+    
+    
+    <p class="lead display-4" > Welcome {{ user.first_name|title }}</p>
+    
+    
+    
+    {% else %}
+    <form method="post" action="">     
+        {% csrf_token %}
+        
+        <section class="container">
+            <div class="row justify-content-center">                
+                <div class="col-md-3">
+                    {{ form.username | as_crispy_field  }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.email | as_crispy_field  }}
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    {{ form.password | as_crispy_field  }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.confirm_password | as_crispy_field  }}
+                </div>      
+            </div> 
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    {{ form.first_name | as_crispy_field  }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.last_name | as_crispy_field  }}
+                </div>  
+            </div>                          
+        </section>   
+        <section class="container text-center">
+            <input class="btn  btn-lg btn-outline-success text-white border border-white mt-3 " type="submit" value="Create Account" />
+
+        </section>
+    </form>
+    
+    {% endif %}
+</div>
+
+{% endblock %}

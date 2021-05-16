@@ -1,0 +1,27 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% block title %}
+	<title>Consume Stock</title>
+{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block issue_active %}
+bg-danger border-0 rounded
+{% endblock %}
+
+{% block content %}
+	<div class="container" style="padding-left: 100px;">
+		{% if reservation %}
+	<h1>Issuing - {{ reservation.inventory.partMaster.belPartNo.belPartNo }}</h1>
+	<p>{{reservation.inventory.partMaster.mpn}}  :{{reservation.inventory.partMaster.description}}</p>
+	<p class="lead">Issue Qty :  {{reservation.reservedQty}}</p>
+	<p class="lead">Reservation Remark :  {{reservation.comment}}</p>
+		<form method="POST", acction="">
+			{% csrf_token %}
+			
+				{{ form|crispy}}			
+
+			<input class="btn mx-auto btn-lg btn-outline-success text-white border border-white mt-1 px-5" type="submit" name="Issue" value="Consume">
+		</form>
+	{% endif %}
+	</div>
+{% endblock %}

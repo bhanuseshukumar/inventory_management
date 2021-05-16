@@ -1,0 +1,29 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% block title %}
+	<title>Do Reservation</title>
+{% endblock %}
+{%load crispy_forms_tags %}
+<!---->
+{% block reservaitons_active %}
+bg-danger border-0 rounded
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container" style="padding-left: 100px;" >
+	{% if inventory %}
+	<h1>Do Reservation -{{ inventory.partMaster.belPartNo.belPartNo }}</h1>
+	<p>{{inventory.partMaster.mpn}}  :{{inventory.partMaster.description}}</p>
+	<p class="lead">Available Qty  :  {{inventory.qty}}</p>
+		<form method="POST", acction="">
+			{% csrf_token %}
+			
+				{{ form|crispy }}			
+
+			<input type="submit" class="mb-4 btn mx-auto btn-lg btn-outline-success text-white border border-white mt-1 px-5" name="Add-reservation" value="Reserve">
+		</form>
+	{% endif %}
+</div>
+{% endblock %}

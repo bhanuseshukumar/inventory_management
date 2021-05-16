@@ -1,0 +1,39 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container text-white" style="padding-left :25%"> 
+    
+    {% if form.errors %}
+    <p class="error lead">Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    
+    {% if user.is_authenticated %}
+
+
+
+        <p class="lead display-4" > Welcome {{ user.first_name|title }}</p>
+
+
+
+    {% else %}
+        <h1 class=" display-4">
+            USER LOGIN
+        </h1>
+        
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            {{ form|crispy }}
+            <input class="btn  btn-lg btn-outline-success text-white border border-white mt-3 " type="submit" value="Login" />
+            <a href="{% url 'signup' %}" class="btn  btn-lg btn-outline-success text-white border border-white mx-md-3 mt-3 ">Sign UP</a>
+
+            <input type="hidden" name="next" value="{{ next }}" />
+
+        </form>
+        
+        {# Assumes you setup the password_reset view in your URLconf #}
+        <p class="mt-2 lead" ><a class="text-white" href="">Lost password?</a></p>
+    {% endif %}
+    </div>
+    
+    {% endblock %}

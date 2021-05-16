@@ -1,0 +1,13 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container text-white py-2 text-center" > 
+    
+    <h1 class="lead display-3">Logged out!</h1>
+    <a class="text-white btn mx-auto btn-lg btn-outline-success text-white border border-white mt-1 px-5" href="{% url 'login'%}">Click here to login again.</a>
+
+</div>
+
+{% endblock %}

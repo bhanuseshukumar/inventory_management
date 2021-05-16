@@ -1,0 +1,350 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		{%block title %}		
+		<title>My site</title>
+		{% endblock %}
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'matmgmt/bootstrap-4.5.3-dist/css/bootstrap.min.css' %}">
+		
+		<link rel="stylesheet" href="{% static 'matmgmt/fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/css/all.css' %}">
+		
+		<link rel="stylesheet" href="{% static 'matmgmt/css/styles.css' %}">
+	</head>
+	<body>
+		
+		<!--Header section-->
+		<header id="header" class="bg-dark">
+			<div class="container">
+				<div class="row height align-items-center">
+					<div class="col">
+						<h1 class="text-danger text-uppercase font-weight-bold font-italic">
+							<string>MY FIRST BOOTSTRAP</string>
+							<small class="text-light">website</small>
+						</h1>
+						<p class="lead text-muted py-2 w-75">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse voluptas, recusandae nesciunt libero, reprehenderit cum perferendis assumenda explicabo magnam culpa cupiditate vero maiores ex temporibus!</p>
+						<a href="#" class="btn btn-outline-primary btn-lg text-capitalize">press here</a>
+						<a href="#" class="btn btn-outline-success btn-lg text-capitalize">press here</a>
+						
+					</div>
+					
+					
+				</div>
+			</div>
+		</header>
+		
+		<!--Skills section-->>
+		<section id="skills" class="py-5 bg-white">
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+						<h1 class="display-4 text-uppercase text-dark mb-0">
+							<strong>Skills</strong>
+						</h1>
+						<div class="title-underline bg-danger"></div>
+						<p class="my-2 text-capitalize">Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6 col-lg-4 text-center my-4">
+						<i class="fab fa-node-js fa-5x text-danger"></i>
+						<h3 class="text-uppercase my-3">Node.js</h3>
+						<p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas obcaecati ad fugit ducimus cum provident?</p>
+						<a href="#" class="btn btn-outline-danger btn-block text-uppercase">Press here</a>
+					</div>
+					
+					<div class="col-md-6 col-lg-4 text-center my-4">
+						<i class="fab fa-html5 fa-5x text-danger"></i>
+						<h3 class="text-uppercase my-3">HTML5</h3>
+						<p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas obcaecati ad fugit ducimus cum provident?</p>
+						<a href="#" class="btn btn-outline-danger w-75 text-uppercase">Press here</a>
+					</div>
+					
+					<div class="col-md-6 col-lg-4 text-center my-4">
+						<i class="fab fa-css3 fa-5x text-danger"></i>
+						<h3 class="text-uppercase my-3">css3</h3>
+						<p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas obcaecati ad fugit ducimus cum provident?</p>
+						<a href="#" class="btn btn-outline-danger btn-block text-uppercase">Press here</a>
+					</div>
+					
+					<div class="col-md-6 col-lg-4 text-center my-4">
+						<i class="fab fa-js fa-5x text-danger"></i>
+						<h3 class="text-uppercase my-3">js</h3>
+						<p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas obcaecati ad fugit ducimus cum provident?</p>
+						<a href="#" class="btn btn-outline-danger w-25 text-uppercase">Press here</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!--End of skills section-->
+		
+		<!--About section-->
+		<section id="about" class="bg-info">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6 about-picture height-80">
+						
+					</div>
+					
+					<div class="col-md-6 about-text height-80 px-5 d-flex align-items-center justify-content-center">
+						<div class="about text-center">
+							<div class="row">
+								<div class="col text-center">
+									<h1 class="display-4 text-uppercase text-dark mb-0">
+										<strong>About</strong>
+									</h1>
+									<div class="title-underline bg-warning"></div>
+									<p class="my-2 text-capitalize">Lorem ipsum dolor sit amet.</p>
+								</div>
+							</div>
+							<!--Single item-->
+							<div class="checkbox-item d-flex">
+								<i class="fa fa-check fa-1x p-2 bg-warning mr-3 align-self-center"></i>
+								<p class="text-light lead text-left align-self-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, obcaecati!</p>
+							</div>
+							<!--end of signle item-->
+							<!--Single item-->
+							<div class="checkbox-item d-flex">
+								<i class="fa fa-check fa-1x p-2 bg-warning mr-3 align-self-center"></i>
+								<p class="text-light lead text-left align-self-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, obcaecati!</p>
+							</div>
+							<!--end of signle item-->							 
+							<!--Single item-->
+							<div class="checkbox-item d-flex">
+								<i class="fa fa-check fa-1x p-2 bg-warning mr-3 align-self-center"></i>
+								<p class="text-light lead text-left align-self-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, obcaecati!</p>
+							</div>
+							<!--end of signle item-->								 
+							
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<!--End of about section-->
+		
+		<!--Projects sections-->
+		<section class="py-5 bg-secondary" id="projects-section">
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+						<h1 class="display-4 text-uppercase text-dark mb-0">
+							<strong>Projects</strong>
+						</h1>
+						<div class="title-underline bg-danger"></div>
+					</div>
+				</div>	
+				
+				<div class="row py-3">
+					<div class="col-sm-6 col-md-4 mt-3">
+						<img class="img-fluid rounded" alt="project" src="{% static 'matmgmt/img/bgp.jpeg' %}" alt="">
+					</div>
+					
+					<div class="col-sm-6 col-md-4 mt-3">
+						<img class="img-fluid img-thumbnail bg-danger border border-danger" alt="project" src="{% static 'matmgmt/img/bgp.jpeg' %}" alt="">
+					</div>
+					
+					<div class="col-sm-6 col-md-4 mt-3 mx-auto">
+						<img class="img-fluid rounded-circle" alt="project" src="{% static 'matmgmt/img/bgp.jpeg' %}" alt="">
+					</div>
+					
+				</div>
+				
+				<div class="row py-3  no-gutters">
+					<div class="col-sm-6 col-md-4 mt-3">
+						<img class="img-fluid " alt="project" src="{% static 'matmgmt/img/bgp.jpeg' %}" alt="">
+					</div>
+					
+					<div class="col-sm-6 col-md-4 mt-3">
+						<img class="img-fluid " alt="project" src="{% static 'matmgmt/img/bgp.jpeg' %}" alt="">
+					</div>
+					
+					<div class="col-sm-6 col-md-4 mt-3 mx-auto">
+						<img class="img-fluid" alt="project" src="{% static 'matmgmt/img/bgp.jpeg' %}" alt="">
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<!--End of projects section-->
+		
+		<!--Team section-->
+		<section id="team" class="py-5 bg-light">
+			<div class="row">
+				<div class="col text-center">
+					<h1 class="display-4 text-uppercase text-dark mb-0">
+						<strong>Team</strong>
+					</h1>
+					<div class="title-underline bg-warning"></div>
+					<p class="my-2 text-capitalize">Lorem ipsum dolor sit amet.</p>
+				</div>
+			</div>
+			
+			
+			<!--Team member -->
+			<div class="row">
+				<div class="col-md-6 col-lg-4 my-3">
+					<div class="card">
+						<img class="card-img-to" src="{% static 'matmgmt/img/bgp.jpeg' %}" alt="">
+						<div class="card-body">
+							<h5 class="card-title text-capitalize">team member</h5>
+							<p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam, est?</p>
+							<a href="#" class="btn btn-outline-warning text-uppercase">Press in here</a>
+						</div>
+						<div class="card-footer bg-secondary d-flex justify-content-around">
+							<a href="#"><i class="fab fa-facebook fa-2x text-dark"></i></a>
+							<a href="#"><i class="fab fa-twitter fa-2x text-dark"></i></a>
+							<a href="#"><i class="fab fa-google fa-2x text-dark"></i></a>
+							<a href="#"><i class="fab fa-youtube fa-2x text-dark"></i></a>
+							
+						</div>
+					</div>
+				</div>
+				
+				<!--Tema member 2-->
+				<div class="col-md-6 col-lg-4 my-3">
+					<div class="card">
+						<img class="card-img-to" src="{% static 'matmgmt/img/bgp.jpeg' %}" alt="">
+						<div class="card-body">
+							<h5 class="card-title text-capitalize">team member</h5>
+							<p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam, est?</p>
+							<a href="#" class="btn btn-outline-warning text-uppercase">Press in here</a>
+						</div>
+						<div class="card-footer bg-secondary d-flex justify-content-around">
+							<a href="#"><i class="fab fa-facebook fa-2x text-dark"></i></a>
+							<a href="#"><i class="fab fa-twitter fa-2x text-dark"></i></a>
+							<a href="#"><i class="fab fa-google fa-2x text-dark"></i></a>
+							<a href="#"><i class="fab fa-youtube fa-2x text-dark"></i></a>
+							
+						</div>
+					</div>
+				</div> 
+				<!--Team meber 2 ends-->
+				
+				<!--Tema member 2-->
+				<div class="col-md-6 col-lg-4 my-3">
+					<div class="card">
+						<img class="card-img-to" src="{% static 'matmgmt/img/bgp.jpeg' %}" alt="">
+						<div class="card-body">
+							<h5 class="card-title text-capitalize">team member</h5>
+							<p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam, est?</p>
+							<a href="#" class="btn btn-outline-warning text-uppercase">Press in here</a>
+						</div>
+						<div class="card-footer bg-secondary d-flex justify-content-around">
+							<a href="#"><i class="fab fa-facebook fa-2x text-dark"></i></a>
+							<a href="#"><i class="fab fa-twitter fa-2x text-dark"></i></a>
+							<a href="#"><i class="fab fa-google fa-2x text-dark"></i></a>
+							<a href="#"><i class="fab fa-youtube fa-2x text-dark"></i></a>
+							
+						</div>
+					</div>
+				</div> 
+				<!--Team meber 2 ends-->
+			</div>
+			
+			<!--End of Team member-->
+			
+			
+			
+		</section>
+		
+		<!--End of team seciton-->
+		
+		
+		<!--Carosol starts-->
+		
+		<section id="carosol" class="py-5 bg-primary">
+			<div class="container">
+				<!--Title row-->
+				<div class="row">
+					<div class="col text-center">
+						<h1 class="display-4 text-uppercase text-dark mb-0">
+							<strong>Carosol</strong>
+						</h1>
+						<div class="title-underline bg-danger"></div>
+						<p class="my-2 text-capitalize">Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<!--carosol row-->	
+					<div class="row">
+						<div class="col-md-8 mx-auto text-center">
+							<div id="example" class="carousel slide" data-ride="carousel">
+								<!--Indicators-->
+								<ul class="carousel-indicators">
+									<li data-target="#example" data-slideclass="">
+
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+			</div>
+			
+		</section>
+		<!--Ends Carosol-->
+		
+		<!--filler section-->
+		<section id="filler" class="py-5">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-6 mx-auto">
+					<h1 class="text-danger">My First boot strap website</h1>
+					<p class="py-5 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde nulla provident expedita?</p>
+					<button class="btn btn-primary btn-lg py-3 text-uppercase text-center">presshere</button>
+				</div>
+			</div>
+		</div>
+
+		</section>
+		<!--end of filler section-->
+		
+		<!--starting contact section-->
+		
+		<section class="py-5 bg-primary" id="contact">
+			<div class="container">
+				<div class="row">
+					<div class="col text-center">
+						<h1 class="display-4 text-uppercase text-dark mb-0">
+							<strong>BLOG</strong>
+						</h1>
+						<div class="title-underline bg-warning"></div>
+						<p class="my-2 text-capitalize">Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>	
+				<div class="row">
+					<div class="col-md-6 my-3">
+
+					</div>
+					<!--Google maps-->
+					<div class="col-md-6 my-3">
+						<div class="embed-responsive embed-responsive-4by3">
+							
+
+						</div>
+					</div>
+				</div>			
+			</div>
+		</section>
+		
+		<!---End of contact section-->
+		
+		
+		
+		
+		<script src="{% static 'matmgmt/jquery/jquery-3.6.0.min.js' %}"></script>
+		<script> defer src="{% static 'matmgmt/fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/js/all.js' %}"</script>
+		<script src="{% static 'matmgmt/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js' %}"></script>
+		<script>
+			$(document).ready(function(){
+				$('[data-toggle="tooltip"]').tooltip();   
+			});
+		</script>
+		
+	</body>
+	</html>

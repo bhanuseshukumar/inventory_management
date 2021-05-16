@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{%block title %}		
+	
+	<title>Base Template</title>
+	
+	{% endblock %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'matmgmt/bootstrap-4.5.3-dist/css/bootstrap.min.css' %}">
+	
+	<link rel="stylesheet" href="{% static 'matmgmt/fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/css/all.css' %}">
+	
+	<link rel="stylesheet" href="{% static 'matmgmt/css/styles.css' %}" >
+	
+
+</head>
+<body onload="error_process()" >
+	
+	<!--HEADDER SECTION-->
+	<header id="header-top">
+		<div class="container pt-3">
+			<div class="row">
+				<div class="col">
+					<h1 class="display-3 text-white text-capitalize">communication department</h1>
+					<p class="text-white w-75 lead mt-3">Place for shaping ideas & collaboration </p>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!---ending header section-->
+	
+	<!--Nav Bar start-->
+	<nav class="navbar navbar-expand-md bg-success navbar-dark sticky-top" >
+		<a class="navbar-brand mr-5" href="{% url 'matmgmt_home' %}"><i class="fas fa-cart-arrow-down"></i> Material</a>
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav ">
+				<li class="nav-item">
+					<a class="nav-link text-white {% block addstock_active %}{% endblock %}" href="{% url 'material_master' %}">Part List</a>
+				</li>
+				<li class="nav-item ">
+					<a class="nav-link text-white {% block inventory_active %}{% endblock %}" href="{% url 'stock-list' %}">Inventory</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-white {% block reservaitons_active %}{% endblock %}" href="{% url 'reservations-list' %}">Reservations</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-white {% block issue_active %}{% endblock %}" href="{% url 'issues-list' %}">Consumptions</a>
+				</li>
+			</ul>
+			
+			<ul class="navbar-nav ml-auto mr-5 text-right d-inline-flex">
+				
+					{% if user.is_authenticated %}
+					<li>
+					<!-- <a class="nav-link text-white bg-danger border rounded-circle" href="{% url 'logout' %}?next={{request.path}}">
+						<i class="fas fa-sign-out-alt"></i>Hi. {{user.username}}</a> -->
+						<!-- Example split danger button -->
+					<div class="btn-group">
+						<button type="button" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Hi {{user.first_name}}</button>
+						<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">Notifications</a>
+						<a class="dropdown-item" href="#">Profile</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{% url 'logout' %}?next={{request.path}}">Logout</a>
+						</div>
+					</div>
+						</li>
+						{% else %}
+						<li>
+						<a class="nav-link text-white" href="{% url 'login' %}?next={{request.path}}">
+							<i class="fas fa-sign-in-alt"></i> Login</a>
+						</li>
+						{% endif %}		
+
+					</ul>
+				</div>
+			</nav> 
+			<!--Navigation section end-->
+			
+			<!--Content section-->
+			<section id="content" class="container-fluid text-white py-5">
+				{% block content %}
+				<div class="container text-white">
+					<h1 class="display-4">Welcome home....</h1>
+				</div>		
+				{% endblock %}
+				
+			</section>
+			<!--End of content   section-->
+			
+			<!--Footer section-->
+			<footer id="footter-bot" class="container-fluid py-5 text-white">
+				<div class="container">
+					<div class="row align-items-center justify-content-middl">
+						<div class="col">
+							<p class="lead text-weight-bold">Designed by Bhanu Seshu Kumar</p>
+							<p class="w-75"><small>Due credit is attributed to Authors & Contributors of Font Awsome,  Boot Strap,  Pixels, Django</small></p>
+							
+						</div>
+						<div class="col">
+							<p class="footer-copyright text-center">
+								© 2021 Copyright: Bhanu Seshu Kumar Valluri
+							</p>
+						</div>
+					</div>
+					
+				</div>
+			</footer>
+			<!--End of footer section-->
+			
+			
+			<script src="{% static 'matmgmt/jquery/jquery-3.6.0.min.js' %}"></script>
+			<script> src="{% static 'matmgmt/fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/js/all.js' %}"</script>
+			<script src="{% static 'matmgmt/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js' %}"></script>
+			<script>
+				$(document).ready(function(){
+					$('[data-toggle="tooltip"]').tooltip();   
+				});
+			</script>
+			<!--Form error processing script-->
+			
+
+			
+			{% block script %}
+			
+			{% endblock %}
+
+						<!--Scripts to process form errors and add colors-->
+						<script>
+							function error_process() {
+								if(document.getElementsByClassName('errorlist').length !=0)
+								{
+									document.getElementsByClassName('errorlist')[0].className = "errorlist bg-warning text-danger";
+								}
+								if(document.getElementsByClassName('error').length !=0)
+								{
+									document.getElementsByClassName('error')[0].className = "control-group error text-danger bg-warning";
+								}
+							}
+						</script>
+						<!--End of scripts to process form errors and add colors-->
+		</body>
+		</html>

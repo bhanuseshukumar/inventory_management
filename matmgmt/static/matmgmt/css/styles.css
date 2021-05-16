@@ -1,0 +1,101 @@
+body {
+    font-family: 'Arvo', serif;
+}
+
+#header-top{
+     background-color: #6e2594ff;
+     background-image: linear-gradient(to top, rgba(255,0,0,0), rgba(0,0,0,0.5)),url("../img/heade.jpg");
+     background-size: cover;
+     background-position: top;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     height: 300px;
+
+}
+
+th{
+     font-weight: normal;
+}
+
+#content{
+     background-color: #5171A5;
+     min-height: 100vh;
+}
+
+#footter-bot{
+     background-color: #221E22;
+
+}
+
+
+/* .height{
+     min-height: 100vh;
+}
+
+.height-80{
+     min-height: 80vh;
+}
+.title-underline{
+     width :100px;
+     height: 5px;
+     margin: 0 auto;
+     /* background: blue!important; */
+/* } */
+
+/* .about-picture{
+     background: url('../img/bgp.jpeg');
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+}
+
+#filler{
+     background: url('../img/bgp.jpeg');
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-attachment: fixed;   
+     background : linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+}  */
+
+
+
+
+
+/* arvo-regular - latin */
+@font-face {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+         url('../fonts/arvo-v14-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/arvo-v14-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* arvo-italic - latin */
+  @font-face {
+    font-family: 'Arvo';
+    font-style: italic;
+    font-weight: 400;
+    src: local(''),
+         url('../fonts/arvo-v14-latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/arvo-v14-latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* arvo-700 - latin */
+  @font-face {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+         url('../fonts/arvo-v14-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/arvo-v14-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* arvo-700italic - latin */
+  @font-face {
+    font-family: 'Arvo';
+    font-style: italic;
+    font-weight: 700;
+    src: local(''),
+         url('../fonts/arvo-v14-latin-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/arvo-v14-latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }

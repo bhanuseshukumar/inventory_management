@@ -1,0 +1,74 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% block title %}
+	<title>Add Stock</title>
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block addstock_active %}
+bg-danger border-0 rounded
+{% endblock %}
+
+<div class="container mx-5">
+	{% block content %}
+	{% if part %}
+		<h1 class="text-center">Add Stock -{{ part.belPartNo.belPartNo }}</h1>
+		<p class="text-center lead">{{part.mpn}}  :{{part.description}}</p>
+		<form method="POST", acction="" >			
+			{% csrf_token %}
+			
+			<section class="container text-center">
+				<div class="row">
+					<div class="col">
+						{{ form.Quantity | as_crispy_field }}
+					</div>
+					<div class="col  text-warning font-weight-bold">
+						{{ form.free_stock | as_crispy_field }}
+					</div>
+				</div>
+
+				<div class="row">
+					
+					<div class="col">
+						{{ form.Primary_Location | as_crispy_field  }}
+					</div>
+					<div class="col">
+						{{ form.Secondary_Location | as_crispy_field  }}
+					</div>
+				</div>
+				{{ form.Comment | as_crispy_field }}
+				
+				<p class="text-center">
+					<input class="btn mx-auto btn-lg btn-outline-success text-white border border-white mt-1 px-5" type="submit" name="Add Stock" value="Add Stock">
+				</p>
+
+			</section>
+
+		</form>
+
+	{% else %}
+		<p>part not found int the context</p>
+	{% endif %}
+<script>
+		{%load static%}
+		document.getElementById("id_Primary_Location").parentNode.innerHTML += "<a onclick='popupWindow()' class='btn mx-auto btn btn-outline-success text-white border circle-rounded border-white mt-1' data-toggle='tooltip' title = 'CLICK TO ADD NEW LOCATION IF NEEDED' href=''><i class='fas fa-plus-circle fa-2x' style='margin :10px'></i> </a>"
+</script>
+<script>
+let windw =1
+function popupWindow() {
+let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+width=500,height=300,left=100,top=100`;
+
+var popup = open("{% url 'add-location' %}", 'test', params);
+
+var popupTick = setInterval(function() {
+      if (popup.closed) {
+        clearInterval(popupTick);
+        location.reload();
+      }
+    }, 1000);
+	 return false;
+}
+</script>
+{% endblock %}
+</div>

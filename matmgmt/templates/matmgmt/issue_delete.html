@@ -1,0 +1,44 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% block title %}
+	<title>Delete Issue</title>
+{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block issue_active %}
+bg-danger border-0 rounded
+{% endblock %}
+
+
+{% block content %}
+
+{% if error_delete %}
+<div class="container error" style="padding-left: 100px;">
+	<h1 class="display-3 ">ERROR DELETING</h1>
+	<p class="lead error">{{ error_delete }}</p>
+</div>
+
+{% else %}
+
+<div class="container" style="padding-left: 100px;">
+	<h1>Are You Sure to DELETE ?</h1>
+	<p class="lead">Issue record</p>
+
+
+	{% if form %}
+		
+		<p class="lead">BEL PART NUMBER :{{ form.BEL_PART_NUMBER }}</p>
+		<p class="lead">MPN :{{ form.MPN }}</p>
+		<p class="lead">Description :{{ form.description }}</p>
+		<p class="lead">Quantity :{{ form.quantity }}</p>
+
+	{% endif %}
+
+
+	<form method="POST", acction="">
+		{% csrf_token %}
+		<input class="btn mx-auto btn-lg btn-outline-success text-white border border-white mt-1 px-5" type="submit" name="DELETE-issue" value="DELETE">
+		
+	</form>
+</div>
+{% endif %}
+{% endblock %}

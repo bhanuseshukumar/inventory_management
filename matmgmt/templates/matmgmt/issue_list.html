@@ -1,0 +1,143 @@
+{% extends 'matmgmt/index_bootstrap.html' %}
+{% block title %}
+<title>Issued Lists</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'matmgmt/bootstrapTabless/css/bootstrap-table.min.css' %}">
+<link href="{% static 'matmgmt/bootstrapTabless/css/bootstrap-table-sticky-header.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block issue_active %}
+bg-danger border-0 rounded
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container-fluid text-white">
+	<h4 class="display-4 text-center pb-3">Issued Materials</h4>
+	{% if stock_issues %}
+	<div id="toolbar">
+		<select class="form-control">
+				<!-- <option value="">Export Basic</option> -->
+				<option value="all">Export All</option>
+				<!-- <option value="selected">Export Selected</option> -->
+		</select>
+	</div>
+	<table
+	id="table" data-toggle="table"
+	data-filter-control="true"
+	data-toolbar="#toolbar"
+	data-show-export="true"
+	data-show-columns="true" 
+	data-pagination="true"
+	data-sticky-header = "true"
+
+	data-show-toggle="false"
+	data-search="false"
+	data-click-to-select="false"
+	data-height#_="600"
+	class="tab-hide"
+	classs="text-center table table-striped table-responsive-sm table-sm table-bordered table-hover " style="display: none">
+		<thead class=" text-warning text-warning  ">
+			<tr>
+				<!-- <th data-filter-control-placeholder ='search..' data-field="state" data-checkbox="true"></th> -->
+				<th class="pt-5" data-filter-control-placeholder ='search..' data-field="PART NUMBER" data-sortable="true" data-filter-control="input">PART NUMBER</th>
+				<th data-filter-control-placeholder ='search..' data-field="DESCRIPTION" data-sortable="true" data-filter-control="input">DESCRIPTION</th>
+				<th data-filter-control-placeholder ='search..' data-field="MPN" 		 data-sortable="true" data-filter-control="input">MPN</th>
+				<th data-filter-control-placeholder ='search..' data-field="QTY" 		 data-sortable="true" data-filter-control="input">QTY</th>
+				<th data-filter-control-placeholder ='search..' data-field="LOCATION" 	 data-sortable="true" data-filter-control="input">LOCATION</th>
+				<th data-filter-control-placeholder ='select..' data-field="USER"		 data-sortable="true" data-filter-control="select">USER</th>
+				<th data-filter-control-placeholder ='search..' data-field="ISSUED ON" 	 data-sortable="true" data-filter-control="input">ISSUED ON</th>
+				<th data-filter-control-placeholder ='search..' data-field="COMMENTs" 	 data-sortable="true" data-filter-control="input">COMMENTs</th>
+				<th data-filter-control-placeholder ='search..' data-field="EDIT" 		 data-sortable="true" data-filter-control="input">EDIT</th>
+			</tr>
+		</thead>
+		<tbody class="text-white">
+			{% for stock_issue in stock_issues %}
+			<tr id="tr-id-{{ forloop.counter }}" class="tr-class-{{ forloop.counter }}">
+				<!-- <td class="bs-checkbox "><input data-index="{{forloop.counter0 }}" name="btSelectItem" type="checkbox"></td> -->
+				<td id="td-id-{{ forloop.counter }}" class="td-class-{{ forloop.counter }}">{% if  stock_issue.reservation.inventory.free_stock == True %}<i class="fas fa-unlock-alt"></i>{% endif %} {{ stock_issue.reservation.inventory.partMaster.belPartNo.belPartNo}}</td>
+				
+				<td>{{ stock_issue.reservation.inventory.partMaster.description }}</td>
+				<td>{{ stock_issue.reservation.inventory.partMaster.mpn }}</td>	
+				<td>{{ stock_issue.reservation.reservedQty }}</td>		
+				<td>{{ stock_issue.reservation.inventory.storeLoc.primary_loc }} [{{stock_issue.reservation.inventory.secondary_loc}}]</td>
+				<td>{{stock_issue.reservation.user.first_name}}</td>
+				<td>{{ stock_issue.issueDate }}</td>
+				<td><b>Reserve: </b>{{ stock_issue.reservation.comment }}
+					<b>Issue: </b>{{ stock_issue.comment }}
+				</td>	
+				{% load static %}
+				<td>
+					<a class="text-white mr-1"  data-toggle="tooltip" title=" EDIT " href="{% url 'issue-edit' stock_issue.id %}" ><i class="fas fa-edit"></i></a>
+					
+					<a class="text-white"  data-toggle="tooltip" title="DELETE" href="{% url 'issue-delete' stock_issue.id %}" ><i class="fas fa-trash-alt "></i></a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% else %}
+	<p class="lead text-center py-5">There are no issued items....</p>
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block script %}
+	<!-- <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script> -->
+
+<script src="{% static 'matmgmt/bootstrapTabless/js/tableExport.min.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/jspdf.min.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/jspdf.plugin.autotable.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/bootstrap-table.min.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/bootstrap-table-export.min.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/bootstrap-table-filter-control.min.js' %}"></script>
+<script src="{% static 'matmgmt/bootstrapTabless/js/bootstrap-table-sticky-header.min.js' %}"></script>
+
+<script>
+	var $table = $('#table')
+  
+	$(function() {
+	  $('#toolbar').find('select').change(function () {
+		$table.bootstrapTable('destroy').bootstrapTable({
+		  exportDataType: $(this).val(),
+		  exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],
+		  columns: [
+			{
+			  field: 'PART NUMBER',
+			  title: 'PART NUMBER'
+			},{
+			  field: 'DESCRIPTION',
+			  title: 'DESCRIPTION'
+			}, {
+			  field: 'MPN',
+			  title: 'MPN'
+			}, {
+			  field: 'QTY',
+			  title: 'QTY'
+			}, {
+			  field: 'LOCATION',
+			  title: 'LOCATION'
+			}, {
+			  field: 'USER',
+			  title: 'USER'
+			}, {
+			  field: 'ISSUED ON',
+			  title: 'ISSUED ON'
+			}, {
+			  field: 'COMMENTs',
+			  title: 'COMMENTs'
+			},{
+			  field: 'EDIT',
+			  title: 'EDIT'
+			},
+		  ]
+		})
+	  }).trigger('change')
+	})
+  </script>
+  <script src="{% static 'matmgmt/jscript/table_hide.js' %}"></script>
+
+{% endblock %}
